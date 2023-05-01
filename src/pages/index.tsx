@@ -3,14 +3,35 @@ import { allPostsURL } from '../../utils';
 import axios from 'axios';
 import Nav from '@/components/Nav';
 import PostCard from '@/components/PostCard';
+import {
+	tokenState,
+	userIdState,
+	usernameState,
+	websiteState,
+} from '@/atom/state';
+import { useRecoilState } from 'recoil';
 
-// Make hooks for pulling all info from db, serverSideProps, then pass where needed
+// Cookie for Auth
+let cookie = '';
+
+// Cookie Logic
+if (document.cookie !== 'token=' || document.cookie) {
+	if (document.cookie[0] === 't') {
+		let newCookie = document.cookie.split('');
+		newCookie.splice(0, 6);
+		cookie = newCookie.join('');
+	} else {
+		cookie = document.cookie;
+	}
+}
 
 export default function Home() {
 	// STATE
 	const [posts, setPosts] = useState({});
-	const [loggedIn, setLoggedIn] = useState(false);
 	const [loaded, setLoaded] = useState(false);
+	const [token, setToken] = useRecoilState(tokenState);
+	const [username, setUsername] = useRecoilState(usernameState);
+	const [userId, setUserId] = useRecoilState(userIdState);
 
 	useEffect(() => {
 		axios.get(allPostsURL).then((res) => {
@@ -32,7 +53,6 @@ export default function Home() {
 						{posts?.data?.map((post: any) => (
 							<PostCard key={post?.id} post={post} />
 						))}
-						{/* Content goes here, conditionally rendered based on logged in or not */}
 					</div>
 				</div>
 			</>
