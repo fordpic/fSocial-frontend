@@ -19,3 +19,8 @@ export const websiteState = atom({
 	key: 'website',
 	default: 'landing',
 });
+
+export const modalState = atom({
+	key: 'modalState',
+	default: false,
+});
