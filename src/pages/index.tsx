@@ -15,15 +15,15 @@ import { useRecoilState } from 'recoil';
 let cookie = '';
 
 // Cookie Logic
-if (document.cookie !== 'token=' || document.cookie) {
-	if (document.cookie[0] === 't') {
-		let newCookie = document.cookie.split('');
-		newCookie.splice(0, 6);
-		cookie = newCookie.join('');
-	} else {
-		cookie = document.cookie;
-	}
-}
+// if (document.cookie !== 'token=' || document.cookie) {
+// 	if (document.cookie[0] === 't') {
+// 		let newCookie = document.cookie.split('');
+// 		newCookie.splice(0, 6);
+// 		cookie = newCookie.join('');
+// 	} else {
+// 		cookie = document.cookie;
+// 	}
+// }
 
 export default function Home() {
 	// STATE
@@ -32,6 +32,18 @@ export default function Home() {
 	const [token, setToken] = useRecoilState(tokenState);
 	const [username, setUsername] = useRecoilState(usernameState);
 	const [userId, setUserId] = useRecoilState(userIdState);
+
+	// if (localStorage.getItem('userId')) {
+	// 	setUserId(Number(localStorage.getItem('userId')));
+	// }
+
+	// if (localStorage.getItem('username')) {
+	// 	setUsername(localStorage.getItem('username'));
+	// }
+
+	// if (cookie) {
+	// 	setToken(cookie);
+	// }
 
 	useEffect(() => {
 		axios.get(allPostsURL).then((res) => {
@@ -50,6 +62,9 @@ export default function Home() {
 					<Nav />
 					<div className=''>
 						{/* @ts-ignore */}
+						<h1 className='text-center text-xl tracking-wide font-extrabold pt-8'>
+							Most Recent Posts
+						</h1>
 						{posts?.data?.map((post: any) => (
 							<PostCard key={post?.id} post={post} />
 						))}
