@@ -1,4 +1,5 @@
 import NavButton from './NavButton';
+import Login from './Login';
 
 export default function Nav() {
 	return (
@@ -7,6 +8,7 @@ export default function Nav() {
 			<div className='flex ml-6 space-x-3'>
 				<NavButton>Register</NavButton>
 				<NavButton>Sign In</NavButton>
+				<Login />
 			</div>
 		</div>
 	);

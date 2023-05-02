@@ -8,8 +8,13 @@ import {
 } from '@/atom/state';
 import Modal from 'react-modal';
 import axios from 'axios';
+import { XMarkIcon } from '@heroicons/react/24/outline';
 
 // TODO: Make userData type
+type UserDataType = {
+	email: string;
+	password: string;
+};
 
 export default function Login() {
 	// STATE
@@ -19,7 +24,7 @@ export default function Login() {
 	const [username, setUsername] = useRecoilState(usernameState);
 
 	const [input, setInput] = useState('');
-	const [userData, setUserData] = useState({});
+	const [userData, setUserData] = useState<UserDataType>({} as UserDataType);
 	const [error, setError] = useState('none');
 
 	// Event Handlers
@@ -57,7 +62,7 @@ export default function Login() {
 		}
 
 		await axios({
-			url: 'localhost',
+			url: 'http://localhost:4000/login',
 			method: 'POST',
 			data: userData,
 		})
@@ -66,7 +71,7 @@ export default function Login() {
 					setUserId(data.id);
 					setUsername(data.username);
 					setToken(data.signedJwt);
-				} else if (data.message === 'Incorrect Email') {
+				} else if (data.message === 'Incorrect email') {
 					setError('EMAIL_ERR');
 					setErrBackToNone();
 				} else if (data.message === 'Incorrect Password') {
@@ -86,12 +91,20 @@ export default function Login() {
 				<Modal
 					isOpen={open}
 					onRequestClose={() => setOpen(false)}
-					className='border border-pink-400'>
-					<div>
-						LOGIN
-						<div>X</div>
-						<div>
-							<textarea></textarea>
+					className='border-2 border-pink-400'>
+					<div className='text-center max-w-lg w-[90%] absolute top-24 left-[50%] translate-x-[-50%] bg-white border-2 border-gray-200 rounded-xl shadow-md p-4'>
+						<div className='flex justify-between items-center border border-pink-300'>
+							<div className='mx-auto text-xl font-bold'>Log In</div>
+							<div
+								onClick={() => setOpen(false)}
+								className='border border-blue-300'>
+								<XMarkIcon className='h-5' />
+							</div>
+						</div>
+
+						<div className='flex flex-col space-y-1 pt-2'>
+							<input placeholder='Username'></input>
+							<input placeholder='Password'></input>
 						</div>
 						<button></button>
 					</div>
