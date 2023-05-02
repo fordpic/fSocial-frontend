@@ -88,10 +88,7 @@ export default function Login() {
 	return (
 		<div>
 			{open && (
-				<Modal
-					isOpen={open}
-					onRequestClose={() => setOpen(false)}
-					className='border-2 border-pink-400'>
+				<Modal isOpen={open} onRequestClose={() => setOpen(false)} className=''>
 					<div className='text-center max-w-lg w-[90%] absolute top-24 left-[50%] translate-x-[-50%] bg-white border-2 border-gray-200 rounded-xl shadow-md p-4'>
 						<div className='flex justify-between items-center border border-pink-300'>
 							<div className='mx-auto text-xl font-bold'>Log In</div>
@@ -101,12 +98,21 @@ export default function Login() {
 								<XMarkIcon className='h-5' />
 							</div>
 						</div>
-
-						<div className='flex flex-col space-y-1 pt-2'>
-							<input placeholder='Username'></input>
-							<input placeholder='Password'></input>
-						</div>
-						<button></button>
+						<form className='flex flex-col space-y-2 pt-2'>
+							<input
+								onChange={handleInput}
+								type='email'
+								placeholder='Email'></input>
+							<input
+								onChange={handleInput}
+								type='password'
+								placeholder='Password'></input>
+						</form>
+						<button
+							onClick={handleLogin}
+							className='font-semibold text-sm rounded-lg bg-purple-400/90 hover:bg-purple-300/75 cursor-pointer p-2 px-6 mt-1'>
+							Submit
+						</button>
 					</div>
 				</Modal>
 			)}
