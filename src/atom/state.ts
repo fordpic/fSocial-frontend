@@ -22,5 +22,5 @@ export const websiteState = atom({
 
 export const modalState = atom({
 	key: 'modalState',
-	default: true,
+	default: false,
 });

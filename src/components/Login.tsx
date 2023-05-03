@@ -46,6 +46,8 @@ export default function Login() {
 		}, 3000);
 	};
 
+	const openModal = () => setOpen(true);
+
 	async function _login() {
 		if (!userData.email && !userData.password) {
 			setError('DATA_ERR');
@@ -71,6 +73,7 @@ export default function Login() {
 					setUserId(data.id);
 					setUsername(data.username);
 					setToken(data.signedJwt);
+					console.log(data);
 				} else if (data.message === 'Incorrect email') {
 					setError('EMAIL_ERR');
 					setErrBackToNone();
@@ -110,6 +113,7 @@ export default function Login() {
 						</form>
 						<button
 							onClick={handleLogin}
+							type='submit'
 							className='font-semibold text-sm rounded-lg bg-purple-400/90 hover:bg-purple-300/75 cursor-pointer p-2 px-6 mt-1'>
 							Submit
 						</button>

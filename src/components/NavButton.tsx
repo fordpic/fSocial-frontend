@@ -1,5 +1,6 @@
 type ButtonProps = {
 	children: React.ReactNode;
+	onClick?: () => void;
 };
 
 export default function NavButton(props: ButtonProps) {
