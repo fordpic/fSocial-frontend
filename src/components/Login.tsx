@@ -23,15 +23,16 @@ export default function Login() {
 	const [userId, setUserId] = useRecoilState(userIdState);
 	const [username, setUsername] = useRecoilState(usernameState);
 
-	const [input, setInput] = useState('');
+	// const [input, setInput] = useState('');
 	const [userData, setUserData] = useState<UserDataType>({} as UserDataType);
 	const [error, setError] = useState('none');
 
 	// Event Handlers
 	const handleInput = (e: any) => {
 		const input = { ...userData };
-		input[e.target.id] = e.target.value;
+		// input[e.target.id] = e.target.value;
 		setUserData(input);
+		console.log(userData);
 	};
 
 	const handleLogin = (e: any) => {
@@ -45,8 +46,6 @@ export default function Login() {
 			setError('none');
 		}, 3000);
 	};
-
-	const openModal = () => setOpen(true);
 
 	async function _login() {
 		if (!userData.email && !userData.password) {
@@ -73,7 +72,7 @@ export default function Login() {
 					setUserId(data.id);
 					setUsername(data.username);
 					setToken(data.signedJwt);
-					console.log(data);
+					console.log('Login was a success! Data used:', data);
 				} else if (data.message === 'Incorrect email') {
 					setError('EMAIL_ERR');
 					setErrBackToNone();
@@ -82,7 +81,8 @@ export default function Login() {
 					setErrBackToNone();
 				}
 			})
-			.catch(() => {
+			.catch((err) => {
+				console.error(err);
 				setError('SERVER_ERR');
 				setErrBackToNone();
 			});
@@ -104,10 +104,12 @@ export default function Login() {
 						<form className='flex flex-col space-y-2 pt-2'>
 							<input
 								onChange={handleInput}
+								value={userData.email}
 								type='email'
 								placeholder='Email'></input>
 							<input
 								onChange={handleInput}
+								value={userData.password}
 								type='password'
 								placeholder='Password'></input>
 						</form>
