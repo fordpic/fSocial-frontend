@@ -75,9 +75,11 @@ export default function Login() {
 					console.log('Login was a success! Data used:', data);
 				} else if (data.message === 'Incorrect email') {
 					setError('EMAIL_ERR');
+					console.log(error);
 					setErrBackToNone();
 				} else if (data.message === 'Incorrect Password') {
 					setError('PASSWORD_ERR');
+					console.log(error);
 					setErrBackToNone();
 				}
 			})
