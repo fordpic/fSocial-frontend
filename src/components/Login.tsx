@@ -30,14 +30,14 @@ export default function Login() {
 	// Event Handlers
 	const handleInput = (e: any) => {
 		const input = { ...userData };
-		// input[e.target.id] = e.target.value;
+		input[e.target.id] = e.target.value;
 		setUserData(input);
 		console.log(userData);
 	};
 
-	const handleLogin = (e: any) => {
+	const handleLogin = async (e: any) => {
 		e.preventDefault();
-		_login();
+		await _login();
 	};
 
 	// Helper func to refresh error code (for sign in & sign up)
@@ -50,14 +50,17 @@ export default function Login() {
 	async function _login() {
 		if (!userData.email && !userData.password) {
 			setError('DATA_ERR');
+			console.log(error);
 			setErrBackToNone();
 			return;
 		} else if (!userData.email) {
 			setError('EMAIL_ERR');
+			console.log(error);
 			setErrBackToNone();
 			return;
 		} else if (!userData.password) {
 			setError('PASSWORD_ERR');
+			console.log(error);
 			setErrBackToNone();
 			return;
 		}
@@ -69,9 +72,9 @@ export default function Login() {
 		})
 			.then(({ data }) => {
 				if (data.status === 200) {
-					setUserId(data.id);
-					setUsername(data.username);
-					setToken(data.signedJwt);
+					setUserId(data?.id);
+					setUsername(data?.username);
+					setToken(data?.signedJwt);
 					console.log('Login was a success! Data used:', data);
 				} else if (data.message === 'Incorrect email') {
 					setError('EMAIL_ERR');
