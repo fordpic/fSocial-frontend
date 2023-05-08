@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import { allPostsURL } from '../../utils';
 import axios from 'axios';
 import Nav from '@/components/Nav';
@@ -15,7 +16,7 @@ import { useRecoilState } from 'recoil';
 let cookie = '';
 
 // Cookie Logic
-// if (document.cookie !== 'token=' || document.cookie) {
+// if (document?.cookie !== 'token=' || document?.cookie) {
 // 	if (document.cookie[0] === 't') {
 // 		let newCookie = document.cookie.split('');
 // 		newCookie.splice(0, 6);
@@ -27,11 +28,13 @@ let cookie = '';
 
 export default function Home() {
 	// STATE
-	const [posts, setPosts] = useState({});
+	const [posts, setPosts] = useState({} as any);
 	const [loaded, setLoaded] = useState(false);
-	const [token, setToken] = useRecoilState(tokenState);
-	const [username, setUsername] = useRecoilState(usernameState);
-	const [userId, setUserId] = useRecoilState(userIdState);
+	const [token, setToken] = useRecoilState(tokenState as any);
+	const [username, setUsername] = useRecoilState(usernameState as any);
+	const [userId, setUserId] = useRecoilState(userIdState as any);
+
+	const router = useRouter();
 
 	// if (localStorage.getItem('userId')) {
 	// 	setUserId(Number(localStorage.getItem('userId')));

@@ -1,19 +1,30 @@
 import NavButton from './NavButton';
-import Login from './Login';
+import { useRouter } from 'next/router';
+import { usernameState } from '@/atom/state';
 import { useRecoilState } from 'recoil';
-import { modalState } from '@/atom/state';
 
 export default function Nav() {
-	const [open, setOpen] = useRecoilState(modalState);
+	const router = useRouter();
+	const [username, setUsername] = useRecoilState(usernameState);
 
-	return (
-		<div className='border border-pink-400 p-4 flex'>
-			<span className='font-bold text-xl text-purple-500'>fSocial</span>
-			<div className='flex ml-6 space-x-3'>
-				<NavButton>Register</NavButton>
-				<NavButton onClick={() => setOpen(true)}>Sign In</NavButton>
-				<Login />
+	if (username === null) {
+		return (
+			<div className='border border-pink-400 p-4 flex'>
+				<span className='font-bold text-xl text-purple-500'>fSocial</span>
+				<div className='flex ml-6 space-x-3'>
+					<NavButton>Register</NavButton>
+					<button onClick={() => router.push(`/Login`)}>Sign in</button>
+				</div>
 			</div>
-		</div>
-	);
+		);
+	} else {
+		return (
+			<div className='border border-pink-400 p-4 flex'>
+				<span className='font-bold text-xl text-purple-500'>fSocial</span>
+				<div className='flex ml-6 space-x-3'>
+					<h1>{`Welcome, ${username}!`}</h1>
+				</div>
+			</div>
+		);
+	}
 }
