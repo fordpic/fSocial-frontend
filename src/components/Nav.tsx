@@ -1,11 +1,11 @@
 import NavButton from './NavButton';
 import { useRouter } from 'next/router';
 import { usernameState } from '@/atom/state';
-import { useRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 
 export default function Nav() {
 	const router = useRouter();
-	const [username, setUsername] = useRecoilState(usernameState);
+	const username = useRecoilValue(usernameState);
 
 	if (username === null) {
 		return (

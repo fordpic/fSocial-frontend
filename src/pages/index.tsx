@@ -4,27 +4,8 @@ import { allPostsURL } from '../../utils';
 import axios from 'axios';
 import Nav from '@/components/Nav';
 import PostCard from '@/components/PostCard';
-import {
-	tokenState,
-	userIdState,
-	usernameState,
-	websiteState,
-} from '@/atom/state';
+import { tokenState, userIdState, usernameState } from '@/atom/state';
 import { useRecoilState } from 'recoil';
-
-// Cookie for Auth
-let cookie = '';
-
-// Cookie Logic
-// if (document?.cookie !== 'token=' || document?.cookie) {
-// 	if (document.cookie[0] === 't') {
-// 		let newCookie = document.cookie.split('');
-// 		newCookie.splice(0, 6);
-// 		cookie = newCookie.join('');
-// 	} else {
-// 		cookie = document.cookie;
-// 	}
-// }
 
 export default function Home() {
 	// STATE
@@ -35,18 +16,6 @@ export default function Home() {
 	const [userId, setUserId] = useRecoilState(userIdState as any);
 
 	const router = useRouter();
-
-	// if (localStorage.getItem('userId')) {
-	// 	setUserId(Number(localStorage.getItem('userId')));
-	// }
-
-	// if (localStorage.getItem('username')) {
-	// 	setUsername(localStorage.getItem('username'));
-	// }
-
-	// if (cookie) {
-	// 	setToken(cookie);
-	// }
 
 	useEffect(() => {
 		axios.get(allPostsURL).then((res) => {
@@ -64,10 +33,15 @@ export default function Home() {
 				<div className='border-2 border-red-500 min-h-screen mx-auto bg-slate-300/70'>
 					<Nav />
 					<div className=''>
-						{/* @ts-ignore */}
 						<h1 className='text-center text-xl tracking-wide font-extrabold pt-8'>
 							Most Recent Posts
 						</h1>
+						<button
+							onClick={() => router.push(`/CreatePost`)}
+							className='float-right mr-28 font-semibold text-sm rounded-md bg-purple-400/90 hover:bg-purple-300/75 cursor-pointer px-2 py-1'>
+							Make A Post
+						</button>
+						{/* @ts-ignore */}
 						{posts?.data?.map((post: any) => (
 							<PostCard key={post?.id} post={post} />
 						))}

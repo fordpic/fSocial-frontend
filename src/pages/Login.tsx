@@ -72,7 +72,7 @@ export default function Login() {
 			.then(({ data }) => {
 				if (data.status === 200) {
 					setUserId(data?.id);
-					setUsername(data?.username);
+					setUsername(data?.user.username);
 					setToken(data?.signedJwt);
 					console.log('Login was a success! Data used:', data);
 					router.push(`/`);
