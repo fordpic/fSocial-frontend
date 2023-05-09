@@ -5,24 +5,34 @@ import axios from 'axios';
 import Nav from '@/components/Nav';
 import PostCard from '@/components/PostCard';
 import { tokenState, userIdState, usernameState } from '@/atom/state';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 
 export default function Home() {
 	// STATE
 	const [posts, setPosts] = useState({} as any);
 	const [loaded, setLoaded] = useState(false);
-	const [token, setToken] = useRecoilState(tokenState as any);
+	const [token] = useRecoilState(tokenState as any);
 	const [username, setUsername] = useRecoilState(usernameState as any);
 	const [userId, setUserId] = useRecoilState(userIdState as any);
 
 	const router = useRouter();
 
 	useEffect(() => {
-		axios.get(allPostsURL).then((res) => {
-			setPosts(res);
+		if (token !== null) {
+			axios
+				.get(allPostsURL, {
+					headers: {
+						Authorization: `Bearer ${token}`,
+					},
+				})
+				.then((res) => {
+					setPosts(res);
+					setLoaded(true);
+				});
+			console.log(posts);
+		} else {
 			setLoaded(true);
-		});
-		console.log(posts);
+		}
 	}, []);
 
 	if (!loaded) {
