@@ -1,4 +1,3 @@
-import NavButton from './NavButton';
 import { useRouter } from 'next/router';
 import { usernameState } from '@/atom/state';
 import { useRecoilValue } from 'recoil';
@@ -10,14 +9,22 @@ export default function Nav() {
 	if (username === null) {
 		return (
 			<div className='border border-pink-400 p-4 flex'>
-				<span
+				<h1
 					onClick={() => router.push(`/`)}
-					className='font-bold text-xl text-purple-500'>
+					className='font-bold text-xl text-purple-500 hover:cursor-pointer'>
 					fSocial
-				</span>
+				</h1>
 				<div className='flex ml-6 space-x-3'>
-					<button onClick={() => router.push(`/Register`)}>Register</button>
-					<button onClick={() => router.push(`/Login`)}>Sign in</button>
+					<button
+						className='font-semibold text-sm rounded-md bg-purple-400/90 hover:bg-purple-300/75 cursor-pointer px-2'
+						onClick={() => router.push(`/Register`)}>
+						Register
+					</button>
+					<button
+						className='font-semibold text-sm rounded-md bg-purple-400/90 hover:bg-purple-300/75 cursor-pointer px-2'
+						onClick={() => router.push(`/Login`)}>
+						Sign in
+					</button>
 				</div>
 			</div>
 		);
