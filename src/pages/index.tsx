@@ -29,7 +29,6 @@ export default function Home() {
 					setPosts(res);
 					setLoaded(true);
 				});
-			console.log(posts);
 		} else {
 			setLoaded(true);
 		}

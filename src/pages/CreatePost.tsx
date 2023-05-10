@@ -29,7 +29,6 @@ export default function CreatePost() {
 			data: {
 				title: postTitle,
 				content: postContent,
-				// authorId: user,
 				published: true,
 			},
 		}).then(({ data }) => {
