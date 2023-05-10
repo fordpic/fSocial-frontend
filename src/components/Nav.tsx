@@ -16,7 +16,7 @@ export default function Nav() {
 					fSocial
 				</span>
 				<div className='flex ml-6 space-x-3'>
-					<NavButton>Register</NavButton>
+					<button onClick={() => router.push(`/Register`)}>Register</button>
 					<button onClick={() => router.push(`/Login`)}>Sign in</button>
 				</div>
 			</div>
