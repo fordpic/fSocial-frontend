@@ -5,6 +5,10 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { tokenState, userIdState } from '@/atom/state';
 import { useRecoilValue } from 'recoil';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+
+dayjs.extend(relativeTime);
 
 export default function Post() {
 	const user = useRecoilValue(userIdState);
@@ -59,24 +63,30 @@ export default function Post() {
 			<div className='border-2 border-red-500 min-h-screen mx-auto bg-slate-300/70'>
 				<Nav />
 				<div className='flex-col text-center justify-center space-y-2'>
-					<h1 className='text-center text-2xl text-purple-400/90 tracking-wide font-extrabold pt-8'>
+					<h1 className='text-center text-3xl text-purple-400/90 tracking-wide font-extrabold pt-8'>
 						{postData?.post?.title}
 					</h1>
 
 					<h3>{postData?.post?.authorId}</h3>
 
-					<div className='border-2 border-purple-400 rounded-lg p-10 mx-40 h-[55vh] max-h-fit'>
+					<div className='border-2 border-purple-400 rounded-lg p-10 mx-40 h-[55vh] max-h-fit shadow-md shadow-purple-300/95'>
 						<p>{postData?.post?.content}</p>
 					</div>
 
 					<div className='pt-4 space-y-3'>
-						<h1 className='text-2xl font-bold tracking-wide'>Comments</h1>
+						<h1 className='text-3xl font-bold tracking-wide'>Comments</h1>
 						{postData?.post?.comments[0] ? (
 							postData?.post?.comments?.map((comment: any) => (
 								<div
-									className='border border-purple-200 mx-28 py-12'
-									key={comment.id}>
-									{comment?.content}
+									className='border border-purple-400 mx-48 py-12 rounded-lg shadow-md'
+									key={comment?.id}>
+									<p className='pb-3 text-md font-semibold'>
+										{comment?.content}
+									</p>
+									<h1>{dayjs(comment?.createdAt).format('MM/DD/YYYY')}</h1>
+									<h3 className='text-sm'>
+										{dayjs(comment?.createdAt).fromNow()}
+									</h3>
 								</div>
 							))
 						) : (

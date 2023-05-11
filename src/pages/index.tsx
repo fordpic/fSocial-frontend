@@ -26,7 +26,6 @@ export default function Home() {
 				})
 				.then((res) => {
 					setPosts(res);
-					console.log(res);
 				});
 		}
 	}, [token]);
@@ -37,7 +36,7 @@ export default function Home() {
 				<div className='border-2 border-red-500 min-h-screen mx-auto bg-slate-300/70'>
 					<Nav />
 					<div className=''>
-						<h1 className='text-center text-xl tracking-wide font-extrabold pt-8'>
+						<h1 className='text-center text-2xl tracking-wide font-extrabold pt-8'>
 							Most Recent Posts
 						</h1>
 						<button
