@@ -18,7 +18,6 @@ export default function Post() {
 
 	const handleComment = (e: any) => {
 		e.preventDefault();
-		console.log(commentData);
 		_comment();
 	};
 
@@ -39,7 +38,7 @@ export default function Post() {
 	};
 
 	useEffect(() => {
-		if (token !== null) {
+		try {
 			axios
 				.get(post, {
 					headers: {
@@ -47,11 +46,11 @@ export default function Post() {
 					},
 				})
 				.then(({ data }) => {
-					setPostData(data?.data?.post);
+					setPostData(data);
 					console.log(postData);
 				});
-		} else {
-			console.log('Token not set');
+		} catch (err) {
+			console.log('Token not set', err);
 		}
 	}, []);
 
@@ -61,27 +60,29 @@ export default function Post() {
 				<Nav />
 				<div className='flex-col text-center justify-center space-y-2'>
 					<h1 className='text-center text-2xl text-purple-400/90 tracking-wide font-extrabold pt-8'>
-						{postData?.title}
+						{postData?.post?.title}
 					</h1>
 
-					<h3>{postData?.authorId}</h3>
+					<h3>{postData?.post?.authorId}</h3>
 
 					<div className='border-2 border-purple-400 rounded-lg p-10 mx-40 h-[55vh] max-h-fit'>
-						<p>{postData?.content}</p>
+						<p>{postData?.post?.content}</p>
 					</div>
 
-					{/* <div>
+					<div className='pt-4 space-y-3'>
 						<h1 className='text-2xl font-bold tracking-wide'>Comments</h1>
-						{postData?.comments[0] ? (
-							postData?.comments?.map((comment: any) => {
-								<div className='border border-pink-200'>
+						{postData?.post?.comments[0] ? (
+							postData?.post?.comments?.map((comment: any) => (
+								<div
+									className='border border-purple-200 mx-28 py-12'
+									key={comment.id}>
 									{comment?.content}
-								</div>;
-							})
+								</div>
+							))
 						) : (
 							<p className='pt-3 text-md font-semibold'>No comments yet!</p>
 						)}
-					</div> */}
+					</div>
 
 					<div className='flex flex-col items-center space-y-2'>
 						<textarea
