@@ -46,8 +46,8 @@ export default function Post() {
 						Authorization: `Bearer ${token}`,
 					},
 				})
-				.then(({ data }) => {
-					setPostData(data?.post);
+				.then((data) => {
+					setPostData(data);
 					console.log(postData);
 				});
 		} else {
@@ -66,15 +66,13 @@ export default function Post() {
 
 					<h3>{postData?.authorId}</h3>
 
-					{postData}
-
 					<div className='border-2 border-purple-400 rounded-lg p-10 mx-40 h-[55vh] max-h-fit'>
 						<p>{postData?.content}</p>
 					</div>
 
-					<div>
+					{/* <div>
 						<h1 className='text-2xl font-bold tracking-wide'>Comments</h1>
-						{postData?.comments > 0 ? (
+						{postData?.comments[0] ? (
 							postData?.comments?.map((comment: any) => {
 								<div className='border border-pink-200'>
 									{comment?.content}
@@ -83,7 +81,7 @@ export default function Post() {
 						) : (
 							<p className='pt-3 text-md font-semibold'>No comments yet!</p>
 						)}
-					</div>
+					</div> */}
 
 					<div className='flex flex-col items-center space-y-2'>
 						<textarea

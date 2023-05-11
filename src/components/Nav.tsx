@@ -31,7 +31,11 @@ export default function Nav() {
 	} else {
 		return (
 			<div className='border border-pink-400 p-4 flex'>
-				<span className='font-bold text-xl text-purple-500'>fSocial</span>
+				<h1
+					onClick={() => router.push(`/`)}
+					className='font-bold text-xl text-purple-500 hover:cursor-pointer'>
+					fSocial
+				</h1>
 				<div className='flex ml-6 space-x-3'>
 					<h1>{`Welcome, ${username}!`}</h1>
 				</div>

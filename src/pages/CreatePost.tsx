@@ -34,6 +34,7 @@ export default function CreatePost() {
 		}).then(({ data }) => {
 			console.log('Posted successfully! Data: ', data);
 			// router directs to newly created post here
+			router.push(`/posts/${data.post.id}`);
 		});
 	};
 

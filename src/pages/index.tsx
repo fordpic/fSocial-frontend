@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 import { allPostsURL } from '../../utils';
 import axios from 'axios';
@@ -6,8 +7,9 @@ import Nav from '@/components/Nav';
 import PostCard from '@/components/PostCard';
 import { tokenState, userIdState, usernameState } from '@/atom/state';
 import { useRecoilState, useRecoilValue } from 'recoil';
+import { getCookie, hasCookie } from 'cookies-next';
 
-export default function Home() {
+export default function Home({ postData }) {
 	// STATE
 	const [posts, setPosts] = useState({} as any);
 	const [loaded, setLoaded] = useState(false);
@@ -28,6 +30,7 @@ export default function Home() {
 				})
 				.then((res) => {
 					setPosts(res);
+					console.log(res);
 				});
 		}
 	}, []);
