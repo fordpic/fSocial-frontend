@@ -46,8 +46,8 @@ export default function Post() {
 						Authorization: `Bearer ${token}`,
 					},
 				})
-				.then((data) => {
-					setPostData(data);
+				.then(({ data }) => {
+					setPostData(data?.data?.post);
 					console.log(postData);
 				});
 		} else {

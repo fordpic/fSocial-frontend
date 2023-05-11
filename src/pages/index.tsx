@@ -1,27 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 import { allPostsURL } from '../../utils';
 import axios from 'axios';
 import Nav from '@/components/Nav';
 import PostCard from '@/components/PostCard';
-import { tokenState, userIdState, usernameState } from '@/atom/state';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { getCookie, hasCookie } from 'cookies-next';
+import { tokenState } from '@/atom/state';
+import { useRecoilState } from 'recoil';
 
-export default function Home({ postData }) {
+export default function Home() {
 	// STATE
 	const [posts, setPosts] = useState({} as any);
-	const [loaded, setLoaded] = useState(false);
-	const [userData, setUserData] = useState({});
 	const [token, setToken] = useRecoilState(tokenState as any);
-	const [username, setUsername] = useRecoilState(usernameState as any);
-	const [userId, setUserId] = useRecoilState(userIdState as any);
 
 	const router = useRouter();
 
 	useEffect(() => {
 		if (token !== null) {
+			localStorage.setItem('token', String(token));
+
 			axios
 				.get(allPostsURL, {
 					headers: {
@@ -33,7 +29,7 @@ export default function Home({ postData }) {
 					console.log(res);
 				});
 		}
-	}, []);
+	}, [token]);
 
 	if (token !== null) {
 		return (
