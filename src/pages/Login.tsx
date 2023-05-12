@@ -93,25 +93,32 @@ export default function Login() {
 			});
 	}
 	return (
-		<div>
-			<form className='flex flex-col space-y-2 pt-2'>
-				<input
-					onChange={handleEmail}
-					value={userData.email}
-					type='email'
-					placeholder='Email'></input>
-				<input
-					onChange={handlePass}
-					value={userData.password}
-					type='password'
-					placeholder='Password'></input>
-			</form>
-			<button
-				onClick={handleLogin}
-				type='submit'
-				className='font-semibold text-sm rounded-lg bg-purple-400/90 hover:bg-purple-300/75 cursor-pointer p-2 px-6 mt-1'>
-				Submit
-			</button>
+		<div className='flex justify-center h-screen'>
+			<div className='border border-purple-500 shadow-md rounded-lg items-center justify-center text-center justify-items-center my-auto'>
+				<h1 className='text-purple-400/90 font-semibold text-2xl mt-2'>
+					Log In
+				</h1>
+				<form className='flex flex-col space-y-2 pt-2 m-7 w-[30vw]'>
+					<input
+						onChange={handleEmail}
+						value={userData.email}
+						type='email'
+						placeholder='Email'
+						className='ml-2'></input>
+					<input
+						onChange={handlePass}
+						value={userData.password}
+						type='password'
+						placeholder='Password'
+						className='ml-2'></input>
+				</form>
+				<button
+					onClick={handleLogin}
+					type='submit'
+					className='font-semibold text-sm rounded-lg bg-purple-400/90 hover:bg-purple-300/75 cursor-pointer p-2 px-6 my-2'>
+					Submit
+				</button>
+			</div>
 		</div>
 	);
 }
