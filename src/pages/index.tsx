@@ -33,7 +33,7 @@ export default function Home() {
 	if (token !== null) {
 		return (
 			<>
-				<div className='border-2 border-red-500 min-h-screen mx-auto bg-slate-300/70'>
+				<div className='border border-purple-500 min-h-screen mx-auto bg-slate-300/70'>
 					<Nav />
 					<div className=''>
 						<h1 className='text-center text-2xl tracking-wide font-extrabold pt-8'>
@@ -55,14 +55,27 @@ export default function Home() {
 	} else {
 		return (
 			<>
-				<div className='border-2 border-red-500 min-h-screen mx-auto bg-slate-300/70'>
+				<div className='border border-purple-500 min-h-screen mx-auto bg-slate-300/70'>
 					<Nav />
-					<div className='text-center space-y-8'>
+					<div className='text-center space-y-10'>
 						<h1 className='text-3xl tracking-wide font-extrabold pt-8'>
-							Welcome to fSocial
+							Welcome to <span className='text-purple-400/90'>fSocial</span>
 						</h1>
-						<p className='text-md'>
+
+						<p className='text-md font-semibold'>
 							Log in or sign up to view and comment on friends posts!
+						</p>
+
+						<p className='text-md font-semibold'>
+							fSocial is a place for friends to come together and stay
+							connected, no matter where they are in the world
+						</p>
+
+						<p className='pt-24 font-semibold'>
+							Falling out of{' '}
+							<span className='font-extrabold text-purple-400/90'>touch</span>{' '}
+							is out of{' '}
+							<span className='font-extrabold text-purple-400/90'>style</span>
 						</p>
 					</div>
 				</div>

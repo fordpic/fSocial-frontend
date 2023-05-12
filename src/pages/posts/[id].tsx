@@ -67,7 +67,8 @@ export default function Post() {
 						{postData?.post?.title}
 					</h1>
 
-					<h3>{postData?.post?.authorId}</h3>
+					{/* TODO: link below to username */}
+					{/* <h3>{postData?.post?.authorId}</h3> */}
 
 					<div className='border-2 border-purple-400 rounded-lg p-10 mx-40 h-[55vh] max-h-fit shadow-md shadow-purple-300/95'>
 						<p>{postData?.post?.content}</p>

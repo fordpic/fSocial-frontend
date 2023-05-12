@@ -8,7 +8,7 @@ export default function Nav() {
 
 	if (username === null) {
 		return (
-			<div className='border border-pink-400 p-4 flex'>
+			<div className='border border-purple-400 shadow-sm p-4 flex'>
 				<h1
 					onClick={() => router.push(`/`)}
 					className='font-bold text-xl text-purple-500 hover:cursor-pointer'>
