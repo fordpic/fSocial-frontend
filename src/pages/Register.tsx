@@ -15,7 +15,6 @@ export default function Register() {
 	const [userData, setUserData] = useState<RegisterData>({} as RegisterData);
 	const router = useRouter();
 
-	// Event Handlers
 	const handleFirstName = (e: any) => {
 		const input = e.target.value;
 		setUserData({

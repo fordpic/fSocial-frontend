@@ -14,8 +14,3 @@ export const usernameState = atom({
 	key: 'username',
 	default: null,
 });
-
-export const websiteState = atom({
-	key: 'website',
-	default: 'landing',
-});

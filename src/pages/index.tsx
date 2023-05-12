@@ -8,7 +8,6 @@ import { tokenState } from '@/atom/state';
 import { useRecoilState } from 'recoil';
 
 export default function Home() {
-	// STATE
 	const [posts, setPosts] = useState({} as any);
 	const [token, setToken] = useRecoilState(tokenState as any);
 

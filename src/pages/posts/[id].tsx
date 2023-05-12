@@ -1,17 +1,16 @@
-import axios from 'axios';
 import Nav from '@/components/Nav';
 import { allPostsURL } from '../../../utils';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { tokenState, userIdState } from '@/atom/state';
+import { tokenState } from '@/atom/state';
 import { useRecoilValue } from 'recoil';
+import axios from 'axios';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 
 dayjs.extend(relativeTime);
 
 export default function Post() {
-	const user = useRecoilValue(userIdState);
 	const token = useRecoilValue(tokenState);
 	const [postData, setPostData] = useState({} as any);
 	const [commentData, setCommentData] = useState({} as any);

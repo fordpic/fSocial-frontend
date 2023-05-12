@@ -2,14 +2,13 @@ import axios from 'axios';
 import Nav from '@/components/Nav';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import { tokenState, userIdState } from '@/atom/state';
+import { tokenState } from '@/atom/state';
 import { useRecoilValue } from 'recoil';
 
 export default function CreatePost() {
 	const [postContent, setPostContent] = useState('');
 	const [postTitle, setPostTitle] = useState('');
 
-	const user = useRecoilValue(userIdState);
 	const token = useRecoilValue(tokenState);
 
 	const router = useRouter();
