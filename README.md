@@ -1,38 +1,32 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# fSocial
 
-## Getting Started
+fSocial is a social site that allows users to view posts, upload posts, as well as leave comments on them, all with full CRUD functionality. fSocial users must first create an account on the site and log in, which will allow them to see other users' posts, comment on them, and make posts of their own, all from their own account. Passwords are encrypted on the backend and JWT is used for authentication, ensuring user info stays secure.
 
-First, run the development server:
+This repository holds the frontend code for fSocial; the backend code can be found [here]()
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+### Key Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Error handling with custom messages
+- Recoil atoms used for storing data and persisting user sessions
+- Posts conditionally render only when user is logged in
+- Register a brand new user in the database
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### Technologies Used
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+- NextJS + TypeScript as the framework
+- TailwindCSS for styling
+- Recoil for state management
+- Axios for data fetching and posting
+- Next Router for app page navigation
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### Next Steps
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+fSocial is currently at MVP, with plans to continue adding functionality to it in the coming weeks and months. Looking ahead, I will be working to incorporate the following into the fSocial frontend:
 
-## Learn More
+- Custom types for everything
+- DRY up the Tailwind code with specific classes
+- SSR the data needed and pass to app using ```getServerSideProps``` (currently it is a combination of useState + Recoil)
 
-To learn more about Next.js, take a look at the following resources:
+### Contributing
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+If you have any feedback at all or would like to make some improvements / get a head start on the next steps above, please just make a PR and tag me (fordpic) so that I can review it for you!
