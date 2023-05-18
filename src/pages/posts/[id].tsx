@@ -17,7 +17,7 @@ export default function Post() {
 
 	const router = useRouter();
 	const { id } = router.query;
-	const post = `${apiURL}/${id}`;
+	const post = `${apiURL}/posts/${id}`;
 
 	const handleComment = (e: any) => {
 		e.preventDefault();
@@ -54,7 +54,7 @@ export default function Post() {
 		} catch (err) {
 			console.log('Token not set', err);
 		}
-	}, []);
+	}, [post]);
 
 	return (
 		<div>
