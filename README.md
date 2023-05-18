@@ -15,6 +15,7 @@ This repository holds the frontend code for fSocial; the backend code can be fou
 
 - NextJS + TypeScript as the framework
 - TailwindCSS for styling
+- Vercel for deployment
 - Recoil for state management
 - Axios for data fetching and posting
 - Next Router for app page navigation
@@ -25,7 +26,7 @@ fSocial is currently at MVP, with plans to continue adding functionality to it i
 
 - Custom types for everything
 - DRY up the Tailwind code with specific classes
-- SSR the data needed and pass to app using ```getServerSideProps``` (currently it is a combination of useState + Recoil)
+- SSR the data needed and pass to app using `getServerSideProps` (currently it is a combination of useState + Recoil)
 
 ### Contributing
 
