@@ -1,12 +1,12 @@
-import Nav from '@/components/Nav';
-import { allPostsURL } from '../../../utils';
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
-import { tokenState } from '@/atom/state';
-import { useRecoilValue } from 'recoil';
 import axios from 'axios';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import { apiURL } from '../../../utils';
+import { tokenState } from '@/atom/state';
+import { useRecoilValue } from 'recoil';
+import Nav from '@/components/Nav';
 
 dayjs.extend(relativeTime);
 
@@ -17,7 +17,7 @@ export default function Post() {
 
 	const router = useRouter();
 	const { id } = router.query;
-	const post = `${allPostsURL}/${id}`;
+	const post = `${apiURL}/${id}`;
 
 	const handleComment = (e: any) => {
 		e.preventDefault();
@@ -26,7 +26,7 @@ export default function Post() {
 
 	const _comment = async () => {
 		await axios({
-			url: `http://localhost:4000/comments/create/${id}`,
+			url: `${apiURL}/comments/create/${id}`,
 			method: 'POST',
 			headers: {
 				Authorization: `Bearer ${token}`,
@@ -35,7 +35,7 @@ export default function Post() {
 				content: commentData,
 			},
 		}).then(({ data }) => {
-			console.log('Commented successfully! Data: ', data);
+			console.log('Commented successfully!');
 			router.push(`/posts/${id}`);
 		});
 	};
@@ -50,7 +50,6 @@ export default function Post() {
 				})
 				.then(({ data }) => {
 					setPostData(data);
-					console.log(postData);
 				});
 		} catch (err) {
 			console.log('Token not set', err);

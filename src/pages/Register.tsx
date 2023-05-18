@@ -1,6 +1,7 @@
-import { useState } from 'react';
 import axios from 'axios';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
+import { apiURL } from '../../utils';
 
 type RegisterData = {
 	firstname: string;
@@ -62,7 +63,7 @@ export default function Register() {
 
 	async function _register() {
 		await axios({
-			url: 'http://localhost:4000/register',
+			url: `${apiURL}/register`,
 			method: 'POST',
 			data: userData,
 		})

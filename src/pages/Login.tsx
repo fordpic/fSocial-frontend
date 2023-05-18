@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useState } from 'react';
+import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
 import { tokenState, userIdState, usernameState } from '@/atom/state';
-import axios from 'axios';
-import { useRouter } from 'next/router';
+import { apiURL } from '../../utils';
 
 type UserDataType = {
 	email: string;
@@ -65,7 +66,7 @@ export default function Login() {
 		}
 
 		await axios({
-			url: 'http://localhost:4000/login',
+			url: `${apiURL}/login`,
 			method: 'POST',
 			data: userData,
 		})
@@ -74,7 +75,7 @@ export default function Login() {
 					setUserId(data?.id);
 					setUsername(data?.user.username);
 					setToken(data?.signedJwt);
-					console.log('Login was a success! Data used:', data);
+					console.log('Login was a success!');
 					router.push(`/`);
 				} else if (data.message === 'Incorrect email') {
 					setError('EMAIL_ERR');
@@ -83,7 +84,7 @@ export default function Login() {
 					setError('PASSWORD_ERR');
 					setErrBackToNone();
 				} else {
-					return console.log('errors out here', data);
+					return console.log('Errors out here', data);
 				}
 			})
 			.catch((err) => {

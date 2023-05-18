@@ -1,9 +1,10 @@
 import axios from 'axios';
-import Nav from '@/components/Nav';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { tokenState } from '@/atom/state';
 import { useRecoilValue } from 'recoil';
+import { apiURL } from '../../utils';
+import Nav from '@/components/Nav';
 
 export default function CreatePost() {
 	const [postContent, setPostContent] = useState('');
@@ -20,7 +21,7 @@ export default function CreatePost() {
 
 	const _post = async () => {
 		await axios({
-			url: 'http://localhost:4000/posts/create',
+			url: `${apiURL}/posts/create`,
 			method: 'POST',
 			headers: {
 				Authorization: `Bearer ${token}`,

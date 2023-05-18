@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
-import { allPostsURL } from '../../utils';
 import axios from 'axios';
-import Nav from '@/components/Nav';
-import PostCard from '@/components/PostCard';
+import { useRouter } from 'next/router';
 import { tokenState } from '@/atom/state';
 import { useRecoilState } from 'recoil';
+import { apiURL } from '../../utils';
+import Nav from '@/components/Nav';
+import PostCard from '@/components/PostCard';
 
 export default function Home() {
 	const [posts, setPosts] = useState({} as any);
@@ -18,7 +18,7 @@ export default function Home() {
 			localStorage.setItem('token', String(token));
 
 			axios
-				.get(allPostsURL, {
+				.get(`${apiURL}/posts`, {
 					headers: {
 						Authorization: `Bearer ${token}`,
 					},
@@ -70,11 +70,12 @@ export default function Home() {
 							connected, no matter where they are in the world
 						</p>
 
-						<p className='pt-24 font-semibold'>
-							Falling out of{' '}
+						<p className='pt-24 text-2xl font-semibold'>
+							&quot;Falling out of{' '}
 							<span className='font-extrabold text-purple-400/90'>touch</span>{' '}
 							is out of{' '}
 							<span className='font-extrabold text-purple-400/90'>style</span>
+							&quot; - Me
 						</p>
 					</div>
 				</div>
